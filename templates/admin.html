@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 50px;
+            font-size: 16px;
+            width: 320px;
+            height: 50px;
+            text-align: center;
+            text-decoration: none;
+            background-color: #4CAF50;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+            margin-top: 10px;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        .upload-form {
+            margin-top: 30px;
+        }
+
+        .upload-input {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .upload-button {
+            width: 200px;
+            display: inline-block;
+            padding: 6px 12px;
+            font-size: 13px;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-color: #f9f9f9;
+        }
+
+        .upload-button:hover {
+            background-color: #e9e9e9;
+        }
+
+        .botoes-container {
+            margin-top: 50px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .botoes {
+            flex: 1 0 320px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        .titulo {
+            margin-bottom: 5px;
+        }
+        .pagina-inicial{
+            margin-top: 500px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="titulo">Módulo Admin</h1>
+        <a class="pagina-inicial" href="/">Tela Inicial</a>
+        <form class="upload-form" action="/admin/importa_relatorio_ciap" method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" class="upload-input">
+            <input type="submit" value="Importar Relatório CIAP" class="upload-button">
+            {% if message_relatorio_ciap %}
+                <div class="alert">{{ message_relatorio_ciap }}</div>
+            {% endif %}
+
+        </form>
+        <form class="upload-form" action="/admin/importa_relatorio_zsdr133" method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" class="upload-input">
+            <input type="submit" value="Importar Relatório ZSDR133" class="upload-button">
+            {% if message_133 %}
+                <div class="alert">{{ message_133 }}</div>
+            {% endif %}
+        </form>
+        <form class="upload-form" action="/admin/importa_tabela_anek" method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" class="upload-input">
+            <input type="submit" value="Importar Tabela ANEK" class="upload-button">
+            {% if message_anek %}
+                <div class="alert">{{ message_anek }}</div>
+            {% endif %}
+        </form>
+                <form class="upload-form" action="/admin/importa_tabela_anla" method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" class="upload-input">
+            <input type="submit" value="Importar Tabela ANLA" class="upload-button">
+            {% if message_anek %}
+                <div class="alert">{{ message_anek }}</div>
+            {% endif %}
+        </form>
+                <form class="upload-form" action="/admin/importa_planilha_transferencias_e_baixas" method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" class="upload-input">
+            <input type="submit" value="Importar Planilha Transferencias e Baixas" class="upload-button">
+            {% if message_anek %}
+                <div class="alert">{{ message_anek }}</div>
+            {% endif %}
+        </form>
+        <div class="botoes-container">
+            <form class="botoes" method="POST" enctype="multipart/form-data" action="/admin/criar_relatorio_ciap_consolidado">
+                <button type="submit" class="button" name="criar-ciap-consolidado">Criar Relatório CIAP Consolidado</button>
+                {% if message_funcao_criar_relatorio_ciap %}
+                    <div class="alert">{{ message_funcao_criar_relatorio_ciap }}</div>
+                {% endif %}
+            </form>
+            <form class="botoes" method="POST" enctype="multipart/form-data" action="/admin/criar_relatorio_diferencas">
+                <button type="submit" class="button" name="criar-relatorio-diferencas">Criar Relatório de Diferenças</button>
+                {% if message_relatorio_diferencas %}
+                    <div class="alert">{{ message_relatorio_diferencas }}</div>
+                {% endif %}
+            </form>
+            <form class="botoes" method="POST" enctype="multipart/form-data" action="/admin/excluir_105_e_100_correspondente">
+                <button type="submit" class="button" name="excluir_dados_do_mes">Excluir dados do mês</button>
+                {% if message_excluir_movimento %}
+                    <div class="alert">{{ message_excluir_movimento }}</div>
+                {% endif %}
+            </form>
+            <form class="botoes" method="POST" enctype="multipart/form-data" action="/admin/atualizar_historico_ciap">
+                <button type="submit" class="button" name="atualizar-historico-ciap">Atualizar histórico CIAP</button>
+                {% if message_atualizar_historico_ciap %}
+                    <div class="alert">{{ message_atualizar_historico_ciap }}</div>
+                {% endif %}
+            </form>
+            <form class="botoes" method="POST" enctype="multipart/form-data" action="/admin/consistir_dados_mes">
+                <button type="submit" class="button" name="consistir_dados_mes">Consistir dados do mês</button>
+                {% if message_funcao_consistir_dados_mes %}
+                    <div class="alert">{{ message_funcao_consistir_dados_mes }}</div>
+                {% endif %}
+            </form>
+
+
+        </div>
+    </div>
+
+</body>
+</html>

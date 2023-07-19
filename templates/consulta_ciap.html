@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Consulta do CIAP</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="body-consult">
+    <header class="header">
+        <h1 class="logo">Dados do Banco de Dados</h1>
+                            <nav class="index-menu">
+        <ul class="index-menu">
+            <li class="index-menu"><a class="index-menu" href="/">Tela Inicial</a></li>
+        </ul>
+                </nav>
+    </header>
+
+<div class="busca">
+    <div class="buscar-dados-container">
+        <h2 class="buscar-dados">Buscar por dados:</h2>
+        <form action="/ciap/consulta" method="GET" enctype="multipart/form-data" class="bucar-dados-form">
+            <div class="buscar-dados-inputs">
+                <input type="text" name="local_de_negocio" placeholder="Local de Negocios" class="buscar-dados-input">
+                <input type="text" name="mes" placeholder="Mes" class="buscar-dados-input">
+                <input type="text" name="ano" placeholder="Ano" class="buscar-dados-input">
+            </div>
+            <input type="submit" name="search" value="Buscar" class="buscar-dados-submit">
+            <input type="submit" name="export" value="Exportar para Excel (CIAP)" class="buscar-dados-submit" formaction="{{ url_for('ciap.export_ciap') }}">
+            <input type="submit" name="export_notas_sem_ciap" value="Exportar para Excel (Notas Sem CIAP)" class="buscar-dados-submit" formaction="{{ url_for('ciap.export_notas_sem_ciap') }}">
+
+        </form>
+    </div>
+</div>
+
+
+ {% if dados %}
+    <table class="tabela">
+        <tr class="grade">
+            {% for coluna in cabecalho %}
+            <th class="coluna">{{ coluna }}</th>
+            {% endfor %}
+        </tr>
+        {% for dado in dados %}
+        <tr class="linha">
+            {% for valor in dado %}
+            <td class="linha">{{ valor }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+    <footer class="footer">
+        <p>&copy; 2023 Gerenciador CIAP-SPED.</p>
+    </footer>
+</body>
+</html>
+

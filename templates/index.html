@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Página Inicial</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header class="header">
+        <h1 class="titulo-ciap-sped">CIAP-SPED</h1>
+                <nav class="admin-menu">
+        <ul class="admin-menu">
+            <li class="admin-menu"><a class="admin-menu" href="/login">Administrador</a></li>
+        </ul>
+                </nav>
+    </header>
+    <div class="container">
+        <div class="module">
+            <h2>Módulo CIAP</h2>
+            <ul>
+                <li><a href="/ciap/consulta">Consulta de Dados</a></li>
+                <li><a class="desativado" href="/ciap/importacao">Importação de Dados [DESATIVADO]</a></li>
+                <li><a class="desativado" href="/ciap/alteracao">Alteração de Dados [DESATIVADO]</a></li>
+            </ul>
+        </div>
+        <div class="module">
+            <h2>Módulo SPED</h2>
+            <ul>
+                <li><a class="desativado" href="/sped/importacao-relatorio">Importação de Relatório [DESATIVADO]</a></li>
+                <li><a href="/sped/importacao-sped">Importação do Sped</a></li>
+                <li><a href="/sped/geracao-sped">Geração do Sped</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 Gerenciador CIAP-SPED.</p>
+    </footer>
+
+    </nav>
+</body>
+</html>
